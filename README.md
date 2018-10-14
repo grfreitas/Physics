@@ -1,2 +1,2 @@
-# VPython-Physics
+# Physics
 Cool physics demos and models!
