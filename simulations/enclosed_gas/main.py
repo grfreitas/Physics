@@ -17,7 +17,7 @@ class Particle(object):
         self.velocity = np.array([np.random.uniform(-2, 2), np.random.uniform(-2, 2)])
         self.acceleration = np.array([0.0, 0.0])
 
-        self.mass = np.random.uniform(1, 100)
+        self.mass = 1
         self.radius = 0.015
         self.index = kwargs.get('index')
 
@@ -76,8 +76,8 @@ def get_initial_state(n=100):
 
     particles = [Particle(index=i) for i in range(n)]
 
-    for particle in particles:
-        particle.acceleration[1] = - 9
+    # for particle in particles:
+        # particle.acceleration[1] = - 9
 
     return particles
 
