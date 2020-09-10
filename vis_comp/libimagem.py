@@ -88,7 +88,7 @@ def _get_min(_list):
 
 def _get_max(_list):
     flattened_list = _flatten_list(_list)
-    return min(flattened_list)
+    return max(flattened_list)
 
 
 def _apply_filter(img, func, viz):
