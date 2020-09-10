@@ -42,6 +42,8 @@
 
 from copy import deepcopy
 
+import matplotlib.pyplot as plt
+
 import ep01
 
 
@@ -52,19 +54,31 @@ def main():
     """
     # coloque aqui os seus testes
 
-    # f = open("img_example.txt", "r")
-    # M = eval(f.read())
+    f = open("img_example.txt", "r")
+    M = eval(f.read())
 
-    M = [[9, 4, 5, 0, 8],
-         [10, 3, 2, 1, 7],
-         [9, 1, 6, 3, 15],
-         [0, 3, 8, 10, 1],
-         [1, 16, 9, 12, 7]]
+    # M = [[9, 4, 5, 0, 8],
+    #      [10, 3, 2, 1, 7],
+    #      [9, 1, 6, 3, 15],
+    #      [0, 3, 8, 10, 1],
+    #      [1, 16, 9, 12, 7]]
 
-    print(ep01.to_string(M))
-    M = segmentacao_SME(M)
-    print(ep01.to_string(M))
+    fig, axs = plt.subplots(ncols=5, nrows=1, figsize=(17, 4))
 
+    ME = segmentacao_SME(M)
+    DM = segmentacao_SDM(M)
+
+    axs[0].imshow(M, cmap='gray')
+
+    axs[1].imshow(ME, cmap='gray')
+    ep01.limiarize(ME, limite=5)
+    axs[2].imshow(ME, cmap='gray')
+
+    axs[3].imshow(DM, cmap='gray')
+    ep01.limiarize(DM, limite=5)
+    axs[4].imshow(DM, cmap='gray')
+
+    plt.show()
 
 # ------------------------------------------------------------------
 #
@@ -88,7 +102,7 @@ def _get_min(_list):
 
 def _get_max(_list):
     flattened_list = _flatten_list(_list)
-    return min(flattened_list)
+    return max(flattened_list)
 
 
 def _apply_filter(img, func, viz):
@@ -165,7 +179,7 @@ def segmentacao_SDM(img, viz=3):
     """
     D = deepcopy(img)
     dilatacao(D, viz)
-    return ep01.subtraia(img, D)
+    return ep01.subtraia(D, img)
 
 
 #######################################################
