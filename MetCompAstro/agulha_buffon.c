@@ -14,7 +14,6 @@ int main() {
     scanf("%d", &N);
 
     int intersected = 0;
-    float length = 1;
 
     for (int i=0; i<N; i++){
         double theta = 2 * M_PI * rand() / RAND_MAX;
@@ -31,6 +30,8 @@ int main() {
     double pi =  2.0 * N / intersected;
 
     printf("Pi estimado para %d lançamentos: %f\n", N, pi);
-    printf("Erro absoluto: %f \n", pi - M_PI);
+
+    erro = (double) pi - M_PI
+    printf("Erro: %f \n", erro);
     return 0;
 }
